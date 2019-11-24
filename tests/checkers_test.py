@@ -37,7 +37,7 @@ from ma.checkers.api_mkl_checker import ApiMklChecker
 from ma.checkers.api_mpi_checker import ApiMpiChecker
 from ma.checkers.pthread_checker import PthreadChecker
 from ma.checkers.builtin_checker import BuiltinChecker
-from checkers_base import CheckersBase
+from . import checkers_base
 
 
 class Checkers(unittest.TestCase):
@@ -46,7 +46,7 @@ class Checkers(unittest.TestCase):
     def setUp(self):
         dir_path = os.path.dirname(os.path.realpath(__file__))
         self.resources_folder = dir_path + "/resources/"
-        self.base = CheckersBase()
+        self.base = checkers_base.CheckersBase()
 
     def inline_asm_test(self):
         """ Inline assembly tests """

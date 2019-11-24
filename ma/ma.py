@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -27,9 +27,9 @@ import sys
 from argparse import ArgumentParser
 from argparse import RawTextHelpFormatter
 import pkg_resources
-import core
+from ma import core
 
-import controller
+from ma import controller
 
 __all__ = []
 __version__ = pkg_resources.require("ma")[0].version
@@ -68,7 +68,8 @@ def main(argv=None):
         parser.add_argument('-V', '--version',
                             action='version',
                             version=program_version_message)
-        subparsers = parser.add_subparsers(help='\nMA commands\n\n')
+        subparsers = parser.add_subparsers(help='\nMA commands\n\n',
+            dest='subcommand')
         # Arguments for the run subcommand
         parser_run = subparsers.add_parser(
             'run',
@@ -157,6 +158,9 @@ def main(argv=None):
             )
         # Process arguments
         args = parser.parse_args()
+        if args.subcommand == None:
+            parser.print_help()
+            return 1
         controller.run(args)
     except KeyboardInterrupt:
         return 1

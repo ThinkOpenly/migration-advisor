@@ -1,2 +1,4 @@
+.
 argparse
 terminaltables
+clang==3.4

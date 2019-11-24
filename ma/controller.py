@@ -26,24 +26,24 @@ import sys
 from clang.cindex import Index
 from clang.cindex import TranslationUnit
 
-from checkers.asm_checker import AsmChecker
-from checkers.long_double_checker import LongDoubleChecker
-from checkers.syscall_checker import SyscallChecker
-from checkers.char_checker import CharChecker
-from checkers.htm_checker import HtmChecker
-from checkers.performance_degradation_checker import PerformanceDegradationChecker
-from checkers.api_dfp_checker import ApiDfpChecker
-from checkers.api_ipp_checker import ApiIppChecker
-from checkers.api_mkl_checker import ApiMklChecker
-from checkers.api_mpi_checker import ApiMpiChecker
-from checkers.pthread_checker import PthreadChecker
-from checkers.builtin_checker import BuiltinChecker
-from visitor import Visitor
-from stat import Statistics
-from problem_reporter import ProblemReporter
-from report_blocker import ReportBlocker
-from help import HelpCreator
-import core
+from ma.checkers.asm_checker import AsmChecker
+from ma.checkers.long_double_checker import LongDoubleChecker
+from ma.checkers.syscall_checker import SyscallChecker
+from ma.checkers.char_checker import CharChecker
+from ma.checkers.htm_checker import HtmChecker
+from ma.checkers.performance_degradation_checker import PerformanceDegradationChecker
+from ma.checkers.api_dfp_checker import ApiDfpChecker
+from ma.checkers.api_ipp_checker import ApiIppChecker
+from ma.checkers.api_mkl_checker import ApiMklChecker
+from ma.checkers.api_mpi_checker import ApiMpiChecker
+from ma.checkers.pthread_checker import PthreadChecker
+from ma.checkers.builtin_checker import BuiltinChecker
+from ma.visitor import Visitor
+from ma.stat import Statistics
+from ma.problem_reporter import ProblemReporter
+from ma.report_blocker import ReportBlocker
+from ma.help import HelpCreator
+from ma import core
 
 
 def run(args):
@@ -79,7 +79,7 @@ def _run_checker(checker, mode, set_of_files):
         cnf += checker.get_problem_type().lower()
         sys.stderr.write(cnf + '\n')
     else:
-        print __current_wip(checker, files)
+        print(__current_wip(checker, files))
         visitor = Visitor(checker)
         index = Index.create()
         for c_file in files:

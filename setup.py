@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -24,7 +24,7 @@ limitations under the License.
 """
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
+#from pip.req import parse_requirements
 import glob
 import ma.core
 
@@ -43,11 +43,12 @@ if ma.core.cmdexists('clang'):
             if not any(clang_line in line for line in req_file):
                 req_file.write(clang_line + '\n')
 else:
-    print 'Looks like you do not have clang installed. Install it first.'
+    print('Looks like you do not have clang installed. Install it first.')
     exit(2)
 
-requirements_list = parse_requirements(requirement_file, session=False)
-requirements = [str(required.req) for required in requirements_list]
+#requirements_list = parse_requirements(requirement_file, session=False)
+#requirements = [str(required.req) for required in requirements_list]
+requirements = ['argparse','terminaltables','clang==3.4']
 
 setup(
     name='ma',
